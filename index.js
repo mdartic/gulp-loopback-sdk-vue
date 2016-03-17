@@ -1,7 +1,7 @@
 'use strict';
 var gutil = require('gulp-util');
 var through = require('through2');
-var generator = require('loopback-sdk-angular');
+var generator = require('loopback-sdk-vue');
 var path = require('path');
 var WatchJS = require('watchjs');
 
@@ -29,27 +29,27 @@ module.exports = function (options) {
       app = require(path.resolve(file.path));
 
       //  Incase options is undefined.
-      options = options || {ngModuleName: 'lbServices', apiUrl: undefined};
+      options = options || {vueResourceName: 'lbServices', apiUrl: undefined};
 
-      options.ngModuleName = options.ngModuleName || 'lbServices';
+      options.vueResourceName = options.vueResourceName || 'lbServices';
       options.apiUrl = options.apiUrl || app.get('restApiRoot') || '/api';
 
       gutil.log('Loaded LoopBack app', gutil.colors.magenta(file.path));
       gutil.log('Generating',
-        gutil.colors.magenta(options.ngModuleName),
+        gutil.colors.magenta(options.vueResourceName),
         'for the API endpoint',
         gutil.colors.magenta(options.apiUrl)
       );
 
       var script = generator.services(
         app,
-        options.ngModuleName,
+        options.vueResourceName,
         options.apiUrl
       );
 
       file.contents = new Buffer(script);
 
-      gutil.log('Generated Angular services file.');
+      gutil.log('Generated vue-resource file.');
 
       this.push(file);
 
@@ -61,7 +61,7 @@ module.exports = function (options) {
         }
       }
     } catch (err) {
-      this.emit('error', new gutil.PluginError('gulp-loopback-sdk-angular', err));
+      this.emit('error', new gutil.PluginError('gulp-loopback-sdk-vue', err));
     }
 
     cb();
