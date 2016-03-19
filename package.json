@@ -26,7 +26,7 @@
   ],
   "dependencies": {
     "gulp-util": "^3.0.1",
-    "loopback-sdk-vue": "git://github.com/mdartic/loopback-sdk-vue.git#7d391b0",
+    "loopback-sdk-vue": "git://github.com/mdartic/loopback-sdk-vue.git#7de4531",
     "through2": "^1.1.1",
     "watchjs": "0.0.0"
   },
